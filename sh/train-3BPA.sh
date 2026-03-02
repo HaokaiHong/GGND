@@ -1,0 +1,34 @@
+CUDA_VISIBLE_DEVICES=0 python3 ./scripts/run_train.py \
+    --name="GGND_3BPA" \
+    --train_file="datasets/3BPA/train_300K.xyz" \
+    --valid_fraction=0.05 \
+    --test_file="datasets/3BPA/test_300K.xyz" \
+    --E0s='{1:-13.663181292231226, 6:-1029.2809654211628, 7:-1484.1187695035828, 8:-2042.0330099956639}' \
+    --model="MACE" \
+    --num_interactions=2 \
+    --hidden_irreps="128x0e + 128x1o + 128x2e" \
+    --correlation=3 \
+    --r_max=5.0 \
+    --forces_weight=1000 \
+    --energy_weight=10 \
+    --batch_size=8 \
+    --valid_batch_size=16 \
+    --max_num_epochs=1000 \
+    --start_swa=800 \
+    --loss="ef" \
+    --stage_two \
+    --start_stage_two=800 \
+    --scheduler_patience=5 \
+    --patience=15 \
+    --eval_interval=10 \
+    --ema \
+    --swa \
+    --swa_forces_weight=10 \
+    --error_table='TotalMAE' \
+    --default_dtype="float64"\
+    --device=cuda \
+    --seed=123 \
+    --restart_latest \
+    --energy_key='energy' \
+    --forces_key='forces' \
+    --save_cpu
